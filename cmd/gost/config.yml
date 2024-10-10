@@ -1,0 +1,31 @@
+services:
+- name: service-0
+  addr: "192.168.1.159:80"
+  handler:
+    type: tcp
+  listener:
+    type: tcp
+  forwarder:
+    nodes:
+    - name: target-0
+      addr: www.iplocation.com:443
+- name: service-1
+  addr: "192.168.1.159:443"
+  handler:
+    type: tcp
+  listener:
+    type: tcp
+  forwarder:
+    nodes:
+    - name: target-0
+      addr: www.bitbucket.org:443
+log:
+  output: stderr
+  level: all
+  format: json
+  rotation:
+    maxSize: 100
+    maxAge: 10
+    maxBackups: 3
+    localTime: false
+    compress: false
